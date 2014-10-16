@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tab animation</title>
+    <style>
+        *{margin:0;padding:0;}
+        body{width:500px;margin:0 auto;}
+        h3{font-size:16px;padding:50px 0 15px;}
+		.tab-nav{background-color:#fff;border-top:1px solid #E2E2E2;border-bottom:1px solid #E2E2E2;height:43px;position:relative;}
+		.tab-nav span{float:left;width:33.3%;text-align:center;border-bottom:4px solid transparent;height:40px;line-height:43px;font-size:16px;color:#666;}
+		.tab-nav span.current{color:#1491C5;}
+		.slide-border{position:absolute;width:33.3%;height:4px;bottom:-1px;left:0;z-index:5;background-color:#1491C5;-webkit-transition:-webkit-transform .3s ease-in-out;-moz-transition:-moz-transform .3s ease-in-out;-ms-transition:-ms-transform .3s ease-in-out;transition:transform .3s ease-in-out;}
+		.tab-nav span:nth-of-type(1).current~.slide-border{-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);transform:translateX(0);}
+		.tab-nav span:nth-of-type(2).current~.slide-border{-webkit-transform:translateX(100%);-moz-transform:translateX(100%);-ms-transform:translateX(100%);transform:translateX(100%);}
+		.tab-nav span:nth-of-type(3).current~.slide-border{-webkit-transform:translateX(200%);-moz-transform:translateX(200%);-ms-transform:translateX(200%);transform:translateX(200%);}
+        .tab-content{padding:20px;display:none;}
+
+        .tab-menu,.tab-menu0,.tab-menu1,.tab-menu2{position:relative;border-top:1px solid #E2E2E2;border-bottom:1px solid #E2E2E2;height:43px;}
+        .tab-menu:after,.tab-menu0:after,.tab-menu1:after,.tab-menu2:after{content:'';position:absolute;width:33.3%;height:4px;bottom:-1px;left:0;z-index:5;background-color:#1491C5;-webkit-transition:-webkit-transform .3s ease-in-out;-moz-transition:-moz-transform .3s ease-in-out;-ms-transition:-ms-transform .3s ease-in-out;transition:transform .3s ease-in-out;}
+        .tab-menu0:after{-webkit-transform:translateX(0);}
+        .tab-menu1:after{-webkit-transform:translateX(100%);}
+        .tab-menu2:after{-webkit-transform:translateX(200%);}
+        .tab-menu span,.tab-menu0 span,.tab-menu1 span,.tab-menu2 span{float:left;width:33.3%;line-height:40px;text-align:center;}
+        .tab-panel{width:100%;height:200px;background:#fefefe;padding:20px;display:none;}
+    </style>
+</head>
+
+<body>
+    <h3>border边线效果加的b标签</h3>
+    <div class="tab-wrap">
+        <div class="tab-nav">
+            <span class="current">菜单一</span>
+            <span>菜单一</span>
+            <span>菜单一</span>
+            <b class="slide-border"></b>
+        </div>
+        <div class="tab-content" style="display:block">
+			content1
+        </div>
+        <div class="tab-content">
+			content2
+        </div>
+
+        <div class="tab-content">
+            content3
+        </div>
+    </div>
+    <h3>border边线是用:after伪类，省下空标签，用JS改变父元素</h3>
+    <div class="tab">
+        <div class="tab-menu">
+            <span>菜单一</span>
+            <span>菜单二</span>
+            <span>菜单三</span>
+        </div>
+        <div class="tab-bd">
+            <div class="tab-panel" style="display:block">panel11111 </div>
+            <div class="tab-panel">panel22222</div>
+            <div class="tab-panel">panel33333</div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.0.min.js"></script>
+    <script>
+    $(function(){
+        $(".tab-nav span").click(function(){
+            var index = $(".tab-nav span").index(this);
+            var content = $(".tab-content");
+            if(!$(this).hasClass("current")){
+                $(this).addClass("current").siblings().removeClass("current");
+                $(".tab-content").eq(index).show().siblings(".tab-content").hide();
+            }
+            return false;
+        })
+        $(".tab-menu span").click(function(){
+            var index = $(this).index();
+            $(this).addClass("current").siblings().removeClass("current");
+            $(".tab-bd .tab-panel").eq(index).show().siblings().hide();
+            $(this).parent()[0].className = "tab-menu"+index;
+        })
+    })
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
