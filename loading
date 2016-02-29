@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>loading</title>
+    <style>
+    .hide{display: none;}
+    .overlay{
+		background-color:rgba(0,0,0,.6);
+		position:fixed;
+		top:0;
+		left:0;
+		width:100%;
+		height:100%;
+		z-index: 10;
+	}
+    .load-container {
+        width: 240px;
+        height: 240px;
+        position: relative;
+        overflow: hidden;
+        box-sizing: border-box;
+        transform: translate3D(-50%,-50%,0);
+	    top: 50%;
+	    left: 50%;
+    }
+    
+    .load-container .loader:before,
+    .load-container .loader:after,
+    .load-container .loader {
+        border-radius: 50%;
+        width: 2.5em;
+        height: 2.5em;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+        -webkit-animation: loading 1.8s infinite ease-in-out;
+        animation: loading 1.8s infinite ease-in-out;
+    }
+    
+    .load-container .loader {
+        margin: 8em auto;
+        font-size: 10px;
+        position: relative;
+        text-indent: -9999em;
+        -webkit-animation-delay: -0.16s;
+        animation-delay: -0.16s;
+    }
+    
+    .load-container .loader:before {
+        left: -3.5em;
+        -webkit-animation-delay: -0.32s;
+        animation-delay: -0.32s;
+    }
+    
+    .load-container .loader:after {
+        left: 3.5em;
+    }
+    
+    .load-container .loader:before,
+    .load-container .loader:after {
+        content: '';
+        position: absolute;
+        top: 0;
+    }
+    
+    @-webkit-keyframes loading {
+        0%,
+        80%,
+        100% {
+            box-shadow: 0 2.5em 0 -1.3em #ffffff;
+        }
+        40% {
+            box-shadow: 0 2.5em 0 0 #FFF;
+        }
+    }
+    
+    @keyframes loading {
+        0%,
+        80%,
+        100% {
+            box-shadow: 0 2.5em 0 -1.3em #ffffff;
+        }
+        40% {
+            box-shadow: 0 2.5em 0 0 #FFF;
+        }
+    }
+    </style>
+</head>
+
+<body>
+
+	<div class="overlay">
+	    <div class="load-container">
+	        <div class="loader">Loading...</div>
+	    </div>
+	</div>
+</body>
+
+</html>
